@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser } from "./storage";
+import { clearAllData, getUser, setUser } from "./storage";
 
 
 
@@ -15,12 +15,19 @@ const userSlice = createSlice({
 
     setUserToLocal: (state, action) => {
       state.user = action.payload;
-      setUserToLocal(action.payload);
+      setUser(state.user);
     },
+
+    clearAll: (state, action) => {
+      state.user = null;
+      state.carts = [];
+      clearAllData();
+
+    }
 
   }
 });
 
-export const { setUserToLocal } = userSlice.actions;
+export const { setUserToLocal, clearAll } = userSlice.actions;
 
 export default userSlice.reducer;

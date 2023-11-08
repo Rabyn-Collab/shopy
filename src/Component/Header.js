@@ -19,7 +19,8 @@ import {
 
 } from "@heroicons/react/24/outline";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearAll } from "../features/userSlice";
 
 const menuItems = [
 
@@ -60,12 +61,9 @@ const adminMenu = [
 
 const Header = () => {
 
-
   const { user } = useSelector((store) => store.userInfo);
-
-
+  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
 
   const menu = user?.isAdmin ? adminMenu : menuItems;
 
@@ -124,11 +122,10 @@ const Header = () => {
                   <MenuItem
                     key={label}
                     onClick={() => {
-
-
-
-
-
+                      switch (label) {
+                        case 'Sign Out':
+                          dispatch(clearAll());
+                      }
 
                     }}
                     className={`flex items-center gap-2 rounded ${isLastItem
