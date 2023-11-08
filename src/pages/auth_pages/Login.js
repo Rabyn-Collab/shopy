@@ -41,12 +41,13 @@ const Login = () => {
         toast.success('successfully login');
         nav(-1);
       } catch (err) {
-        toast.error(err.data.message);
+        console.log(err);
+        toast.error(err.data);
       }
 
 
     },
-    validationSchema: loginSchema
+    //validationSchema: loginSchema
   });
 
 
