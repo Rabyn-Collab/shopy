@@ -8,10 +8,14 @@ import {
 import { useNavigate } from 'react-router';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useUserSignUpMutation } from '../../features/authApi';
+import { toast } from 'react-toastify';
 
 
 
 const SignUp = () => {
+
+  const [userSignUp, { isLoading }] = useUserSignUpMutation();
 
 
   const registerSchema = Yup.object().shape({
@@ -33,6 +37,13 @@ const SignUp = () => {
     },
     onSubmit: async (val) => {
 
+      try {
+        const response = await userSignUp(val).unwrap();
+        toast.success('successfully registered');
+        nav(-1);
+      } catch (err) {
+        toast.error(err.data.message);
+      }
 
 
     },
@@ -75,14 +86,14 @@ const SignUp = () => {
           {formik.errors.password && formik.touched.password && <h1 className='text-pink-700'>{formik.errors.password}</h1>}
         </div>
 
-        {/* {isLoading ? <Button type='submit' className="mt-6" fullWidth>
+        {isLoading ? <Button type='submit' className="mt-6" fullWidth>
           <div className='h-7 w-7 border-2 border-t-blue-gray-900 rounded-full animate-spin mx-auto '></div>
-        </Button> : */}
+        </Button> :
 
-        <Button type='submit' className="mt-6" fullWidth>
-          Submit
-        </Button>
-        {/* } */}
+          <Button type='submit' className="mt-6" fullWidth>
+            Submit
+          </Button>
+        }
 
 
 

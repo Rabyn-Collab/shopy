@@ -10,10 +10,14 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useUserLoginMutation } from '../../features/authApi';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { setUserToLocal } from '../../features/userSlice';
 
 
 const Login = () => {
 
+  const nav = useNavigate();
+  const dispatch = useDispatch();
   const [userLogin, { isLoading }] = useUserLoginMutation();
 
   const loginSchema = Yup.object().shape({
@@ -22,7 +26,6 @@ const Login = () => {
 
   });
 
-  const nav = useNavigate();
 
 
   const formik = useFormik({
@@ -34,8 +37,9 @@ const Login = () => {
     onSubmit: async (val) => {
       try {
         const response = await userLogin(val).unwrap();
-        console.log(response);
+        dispatch(setUserToLocal(response));
         toast.success('successfully login');
+        nav(-1);
       } catch (err) {
         toast.error(err.data.message);
       }
