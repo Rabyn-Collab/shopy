@@ -47,7 +47,7 @@ const Login = () => {
 
 
     },
-    //validationSchema: loginSchema
+    validationSchema: loginSchema
   });
 
 
