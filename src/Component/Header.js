@@ -64,7 +64,7 @@ const Header = () => {
   const { user } = useSelector((store) => store.userInfo);
   const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const nav = useNavigate();
   const menu = user?.isAdmin ? adminMenu : menuItems;
 
 
@@ -125,6 +125,10 @@ const Header = () => {
                       switch (label) {
                         case 'Sign Out':
                           dispatch(clearAll());
+
+                        case 'Product List':
+                          nav('/admin/productList');
+
                       }
 
                     }}
