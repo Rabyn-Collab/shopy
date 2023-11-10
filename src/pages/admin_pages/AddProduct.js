@@ -91,6 +91,7 @@ const AddProduct = () => {
                   <Option value='Diamond'>Diamond</Option>
 
                 </Select>
+                {formik.errors.brand && formik.touched.brand ? <h1 className='mt-2 text-red-600'>{formik.errors.brand}</h1> : null}
               </div>
 
 
@@ -125,6 +126,7 @@ const AddProduct = () => {
                   <Option value='games'>Games</Option>
                   <Option value='beauty products'>Beauty Products</Option>
                 </Select>
+                {formik.errors.category && formik.touched.category ? <h1 className='mt-2 text-red-600'>{formik.errors.category}</h1> : null}
               </div>
 
 
@@ -167,10 +169,11 @@ const AddProduct = () => {
               isLoading ? <Button disabled className="mt-6 relative py-2 flex justify-center" fullWidth>
                 <div className='h-7 w-7 border-2  rounded-full border-t-gray-900 animate-spin'>
                 </div>
-              </Button> :
-                <Button type='submit' className="mt-6" fullWidth>
-                  Submit
-                </Button>} */}
+              </Button> : */}
+            <Button type='submit' className="mt-6" fullWidth>
+              Submit
+            </Button>
+            {/* } */}
 
           </form>
         </Card>
