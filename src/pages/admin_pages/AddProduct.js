@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 import { Select, Option } from "@material-tailwind/react";
+import { useAddProductMutation } from '../../features/productApi';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 
 
@@ -11,6 +14,9 @@ import { Select, Option } from "@material-tailwind/react";
 
 const AddProduct = () => {
   const nav = useNavigate();
+
+  const [addProduct, { isLoading }] = useAddProductMutation();
+  const { user } = useSelector((store) => store.userInfo);
 
 
   const valSchema = Yup.object().shape({
@@ -39,7 +45,25 @@ const AddProduct = () => {
       preview: '',
     },
     onSubmit: async (val) => {
+      let formData = new FormData();
+      formData.append('product_name', val.product_name);
+      formData.append('product_detail', val.product_detail);
+      formData.append('product_price', Number(val.product_price));
+      formData.append('brand', val.brand);
+      formData.append('category', val.category);
+      formData.append('countInStock', Number(val.countInStock));
+      formData.append('product_image', val.product_image);
 
+      try {
+        const response = await addProduct({
+          body: formData,
+          token: user.token
+        }).unwrap();
+        toast.success('successfully add');
+        nav(-1);
+      } catch (err) {
+        toast.error(err.data);
+      }
 
     },
     validationSchema: valSchema
@@ -165,15 +189,15 @@ const AddProduct = () => {
 
 
 
-            {/* {
+            {
               isLoading ? <Button disabled className="mt-6 relative py-2 flex justify-center" fullWidth>
                 <div className='h-7 w-7 border-2  rounded-full border-t-gray-900 animate-spin'>
                 </div>
-              </Button> : */}
-            <Button type='submit' className="mt-6" fullWidth>
-              Submit
-            </Button>
-            {/* } */}
+              </Button> :
+                <Button type='submit' className="mt-6" fullWidth>
+                  Submit
+                </Button>
+            }
 
           </form>
         </Card>

@@ -9,7 +9,7 @@ const HomePage = () => {
 
   }
 
-  console.log(data);
+
   return (
     <div className='p-5 grid grid-cols-3 gap-2 items-start'>
       {data && data.map((product) => {
