@@ -10,6 +10,8 @@ import UserRoutes from './Component/UserRoutes';
 import ProductList from './pages/admin_pages/ProductList';
 import AdminRoutes from './Component/AdminRoutes';
 import AddProduct from './pages/admin_pages/AddProduct';
+import EditForm from './pages/admin_pages/EditForm';
+import EditPage from './pages/admin_pages/EditPage';
 
 const App = () => {
   return (
@@ -21,7 +23,7 @@ const App = () => {
           <Route element={<AdminRoutes />}>
             <Route path='admin/productList' element={<ProductList />} />
             <Route path='admin/productAdd' element={<AddProduct />} />
-
+            <Route path='admin/productEdit/:id' element={<EditPage />} />
           </Route>
 
 
