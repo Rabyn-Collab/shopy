@@ -7,12 +7,13 @@ import { Select, Option } from "@material-tailwind/react";
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { baseUrl } from '../../features/constant';
+import { useUpdateProductMutation } from '../../features/productApi';
 
 
 const EditForm = ({ product }) => {
   const nav = useNavigate();
 
-
+  const [updateProduct, { isLoading }] = useUpdateProductMutation();
 
   const { user } = useSelector((store) => store.userInfo);
 
@@ -45,11 +46,39 @@ const EditForm = ({ product }) => {
       preview: `${baseUrl}${product.product_image}`,
     },
     onSubmit: async (val) => {
+      let formData = new FormData();
+      formData.append('product_name', val.product_name);
+      formData.append('product_detail', val.product_detail);
+      formData.append('product_price', Number(val.product_price));
+      formData.append('brand', val.brand);
+      formData.append('category', val.category);
+      formData.append('countInStock', Number(val.countInStock));
 
+      try {
 
+        if (val.product_image === null) {
+          const response = await updateProduct({
+            body: formData,
+            token: user.token,
+            id: product._id
+          }).unwrap();
+          toast.success('successfully add');
+          nav(-1);
+        } else {
+          formData.append('product_image', val.product_image);
+          formData.append('imagePath', product.product_image);
+          const response = await updateProduct({
+            body: formData,
+            token: user.token,
+            id: product._id
+          }).unwrap();
+          toast.success('successfully updated');
+          nav(-1);
+        }
 
-
-
+      } catch (err) {
+        toast.error(err.data);
+      }
     },
     validationSchema: valSchema
   });
@@ -172,19 +201,19 @@ const EditForm = ({ product }) => {
 
 
 
-            {/* {
+            {
               isLoading ? <Button disabled className="mt-6 relative py-2 flex justify-center" fullWidth>
                 <div className='h-7 w-7 border-2  rounded-full border-t-gray-900 animate-spin'>
                 </div>
-              </Button> : */}
+              </Button> :
 
 
-            <Button type='submit' className="mt-6" fullWidth>
-              Submit
-            </Button>
+                <Button type='submit' className="mt-6" fullWidth>
+                  Submit
+                </Button>
 
 
-            {/* } */}
+            }
 
           </form>
         </Card>
