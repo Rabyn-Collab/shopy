@@ -21,7 +21,7 @@ const AddProduct = () => {
 
   const valSchema = Yup.object().shape({
     product_name: Yup.string().min(5, 'too short').max(50, 'max character 50').required(),
-    product_detail: Yup.string().min(10, 'too short').max(200, 'max character 200').required(),
+    product_detail: Yup.string().min(10, 'too short').max(1200, 'max character 1200').required(),
     product_price: Yup.string().min(1, 'too short').max(5, 'max character 5').required(),
     product_image: Yup.mixed().test('fileType', 'Invalid file type', (value) =>
       value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)

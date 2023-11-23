@@ -24,7 +24,7 @@ export const productApi = createApi({
 
     addProduct: builder.mutation({
       query: (query) => ({
-        url: '/api/createOrder',
+        url: '/api/createProduct',
         body: query.body,
         headers: {
           Authorization: query.token
@@ -46,9 +46,21 @@ export const productApi = createApi({
       invalidatesTags: ['Products']
     }),
 
+    removeProductById: builder.mutation({
+      query: (query) => ({
+        url: `/api/product/${query.id}`,
+        headers: {
+          Authorization: query.token
+        },
+        method: 'DELETE'
+      }),
+
+      invalidatesTags: ['Products']
+    }),
+
 
   })
 });
 
 
-export const { useGetProductsQuery, useAddProductMutation, useGetProductByIdQuery, useUpdateProductMutation } = productApi;
+export const { useGetProductsQuery, useAddProductMutation, useGetProductByIdQuery, useUpdateProductMutation, useRemoveProductByIdMutation } = productApi;

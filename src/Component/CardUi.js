@@ -19,7 +19,7 @@ const CardUi = ({ product }) => {
 
 
   return (
-    <Card className="mt-6 w-full cursor-pointer hover:shadow-2xl" onClick={() => nav(`/product/detail/${product._id}`)}>
+    <Card className="mt-6 w-full cursor-pointer hover:shadow-2xl" onClick={() => nav(`/product/${product._id}`)}>
       <CardHeader color="blue-gray" className="relative h-56 ">
         <img src={`${baseUrl}${product.product_image}`} alt="" className="h-full" />
         {/* <div className="h-full">

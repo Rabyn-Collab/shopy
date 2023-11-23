@@ -12,8 +12,13 @@ import AdminRoutes from './Component/AdminRoutes';
 import AddProduct from './pages/admin_pages/AddProduct';
 import EditForm from './pages/admin_pages/EditForm';
 import EditPage from './pages/admin_pages/EditPage';
+import ProductDetail from './pages/ProductDetail';
 
 const App = () => {
+
+  const data = 6;
+
+  console.log([...Array(data).keys()]);
   return (
     <>
       <Routes>
@@ -26,7 +31,7 @@ const App = () => {
             <Route path='admin/productEdit/:id' element={<EditPage />} />
           </Route>
 
-
+          <Route path='product/:id' element={<ProductDetail />} />
           <Route element={<UserRoutes />}>
             <Route path='user/login' element={<Login />} />
             <Route path='user/signUp' element={<SignUp />} />
