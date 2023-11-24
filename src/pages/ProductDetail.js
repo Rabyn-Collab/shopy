@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useGetProductByIdQuery } from "../features/productApi";
+import { addToCart } from "../features/userSlice";
 
 
 
@@ -19,9 +20,13 @@ const ProductDetail = () => {
   const { id } = useParams();
   const { isLoading, isError, error, data: product } = useGetProductByIdQuery(id);
 
-  const { user } = useSelector((store) => store.userInfo);
+  const { user, carts } = useSelector((store) => store.userInfo);
 
+
+  const dispatch = useDispatch();
   const nav = useNavigate();
+
+
   const formik = useFormik({
     initialValues: {
       qty: 1
@@ -32,6 +37,7 @@ const ProductDetail = () => {
     return <h1>Loading....</h1>;
   }
 
+  const isExist = carts.find((cart) => cart.product === product._id);
 
 
 
@@ -72,7 +78,7 @@ const ProductDetail = () => {
 
 
 
-          {!user.isAdmin && <Card className="h-full w-full overflow-scroll">
+          {!user?.isAdmin && <Card className="h-full w-full overflow-scroll">
             <table className="w-full min-w-max table-auto text-left">
 
               <tbody>
@@ -115,7 +121,9 @@ const ProductDetail = () => {
                   </td>
                   <td className="p-4 border-b border-blue-gray-50 bg-blue-gray-50/50">
                     <Typography variant="small" color="blue-gray" className="font-normal">
-                      <select onChange={(e) => formik.setFieldValue('qty', e.target.value)} className="p-2" name="" id="">
+                      <select
+                        defaultValue={isExist?.qty}
+                        onChange={(e) => formik.setFieldValue('qty', e.target.value)} className="p-2" name="" id="">
 
                         {[...Array(product.countInStock).keys()].map((v, i) => {
                           return <option key={i} value={v + 1}>{v + 1}</option>
@@ -135,6 +143,16 @@ const ProductDetail = () => {
                   <td colSpan={2}>
                     <button onClick={() => {
 
+                      dispatch(addToCart({
+                        name: product.product_name,
+                        qty: Number(formik.values.qty === 1 && isExist?.qty ? isExist.qty : formik.values.qty),
+                        image: product.product_image,
+                        price: Number(product.product_price),
+                        product: product._id,
+                        countInStock: product.countInStock
+                      }
+                      ));
+                      nav('/user/cart');
                     }} className=' w-[50%] bg-black my-5 text-white mx-auto py-1 rounded-sm'>Add To Cart</button>
 
                   </td>

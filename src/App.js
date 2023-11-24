@@ -10,15 +10,12 @@ import UserRoutes from './Component/UserRoutes';
 import ProductList from './pages/admin_pages/ProductList';
 import AdminRoutes from './Component/AdminRoutes';
 import AddProduct from './pages/admin_pages/AddProduct';
-import EditForm from './pages/admin_pages/EditForm';
 import EditPage from './pages/admin_pages/EditPage';
 import ProductDetail from './pages/ProductDetail';
+import CartPage from './pages/user_pages/CartPage';
 
 const App = () => {
 
-  const data = 6;
-
-  console.log([...Array(data).keys()]);
   return (
     <>
       <Routes>
@@ -35,6 +32,7 @@ const App = () => {
           <Route element={<UserRoutes />}>
             <Route path='user/login' element={<Login />} />
             <Route path='user/signUp' element={<SignUp />} />
+            <Route path='user/cart' element={<CartPage />} />
           </Route>
 
 
