@@ -4,6 +4,7 @@ import { Card, Typography } from "@material-tailwind/react";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { baseUrl } from "../../features/constant";
+import { addToCart, removeFromCart } from "../../features/userSlice";
 
 
 const CartPage = () => {
@@ -54,7 +55,15 @@ const CartPage = () => {
                     <select
                       defaultValue={cart.qty}
                       onChange={(e) => {
-
+                        dispatch(addToCart({
+                          name: cart.name,
+                          qty: Number(e.target.value),
+                          image: cart.image,
+                          price: cart.price,
+                          product: cart.product,
+                          countInStock: cart.countInStock
+                        }
+                        ));
                       }
 
 
@@ -70,7 +79,7 @@ const CartPage = () => {
                 </div>
                 <div className="totals flex flex-col justify-between items-end">
 
-                  <button  > <i className="fa-solid fa-xmark"></i> </button>
+                  <button onClick={() => dispatch(removeFromCart(i))}> <i className="fa-solid fa-xmark"></i> </button>
 
 
                   <p>Total: {cart.qty * cart.price}</p>
