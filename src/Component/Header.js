@@ -125,9 +125,10 @@ const Header = () => {
                       switch (label) {
                         case 'Sign Out':
                           dispatch(clearAll());
-
+                          break;
                         case 'Product List':
                           nav('/admin/productList');
+
 
                       }
 

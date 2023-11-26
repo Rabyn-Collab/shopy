@@ -13,6 +13,8 @@ import AddProduct from './pages/admin_pages/AddProduct';
 import EditPage from './pages/admin_pages/EditPage';
 import ProductDetail from './pages/ProductDetail';
 import CartPage from './pages/user_pages/CartPage';
+import LogRoutes from './Component/LogRoutes';
+import Shipping from './pages/auth_pages/Shipping';
 
 const App = () => {
 
@@ -27,14 +29,20 @@ const App = () => {
             <Route path='admin/productAdd' element={<AddProduct />} />
             <Route path='admin/productEdit/:id' element={<EditPage />} />
           </Route>
-
           <Route path='product/:id' element={<ProductDetail />} />
-          <Route element={<UserRoutes />}>
+
+
+          <Route element={<LogRoutes />}>
             <Route path='user/login' element={<Login />} />
             <Route path='user/signUp' element={<SignUp />} />
-            <Route path='user/cart' element={<CartPage />} />
+
           </Route>
 
+
+          <Route element={<UserRoutes />}>
+            <Route path='user/cart' element={<CartPage />} />
+            <Route path='user/shipping' element={<Shipping />} />
+          </Route>
 
 
         </Route>

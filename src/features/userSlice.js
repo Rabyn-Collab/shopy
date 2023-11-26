@@ -32,6 +32,8 @@ const userSlice = createSlice({
 
     },
 
+
+
     removeFromCart: (state, action) => {
       state.carts.splice(action.payload, 1);
       setCarts(state.carts);

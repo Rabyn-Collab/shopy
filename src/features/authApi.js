@@ -6,7 +6,7 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
 
-
+  tagTypes: ['User'],
   endpoints: (builder) => ({
 
     userLogin: builder.mutation({
@@ -23,10 +23,23 @@ export const authApi = createApi({
         body: data,
         method: 'POST'
       })
+
+    }),
+
+    userUpdate: builder.mutation({
+      query: (query) => ({
+        url: '/api/userUpdate',
+        body: query.body,
+        method: 'PATCH',
+        headers: {
+          Authorization: query.token
+        },
+      }),
+      invalidatesTags: ['User']
     }),
 
   })
 });
 
 
-export const { useUserLoginMutation, useUserSignUpMutation } = authApi;
+export const { useUserLoginMutation, useUserSignUpMutation, useUserUpdateMutation } = authApi;

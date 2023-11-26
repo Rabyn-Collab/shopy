@@ -154,14 +154,11 @@ const CartPage = () => {
                 <tr className="text-center ">
                   <td colSpan={2}>
                     <button onClick={() => {
-                      // if (user.shippingAddress.isEmpty) {
-                      //   nav('/user/shipping');
-                      // } else {
-                      //   nav('/user/checkout');
-                      // }
-
-
-
+                      if (user?.shippingAddress?.isEmpty) {
+                        nav('/user/shipping');
+                      } else {
+                        // nav('/user/checkout');
+                      }
 
                     }} className=' w-[60%] bg-black my-5 text-white mx-auto py-1 rounded-sm '>Proceed To CheckOut</button>
 
