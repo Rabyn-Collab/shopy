@@ -15,6 +15,8 @@ import ProductDetail from './pages/ProductDetail';
 import CartPage from './pages/user_pages/CartPage';
 import LogRoutes from './Component/LogRoutes';
 import Shipping from './pages/auth_pages/Shipping';
+import OrderPage from './pages/user_pages/OrderPage';
+import UserProfile from './pages/user_pages/UserProfile';
 
 const App = () => {
 
@@ -42,6 +44,8 @@ const App = () => {
           <Route element={<UserRoutes />}>
             <Route path='user/cart' element={<CartPage />} />
             <Route path='user/shipping' element={<Shipping />} />
+            <Route path='user/checkout' element={<OrderPage />} />
+            <Route path='user/profile' element={<UserProfile />} />
           </Route>
 
 

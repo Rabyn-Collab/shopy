@@ -23,12 +23,11 @@ const CartPage = () => {
 
 
 
-  console.log(carts);
   return (
     <div className="p-4">
 
       {carts.length === 0 ? <div className="h-[340px] mt-11">
-        <lottie-player src="https://lottie.host/d9b09000-90b8-4068-93ff-04b8e399f0ed/MnhzolmZTp.json" background="transparent" speed="1" loop autoplay></lottie-player>
+        <dotlottie-player src="https://lottie.host/a68bf31d-f9bf-41c7-987f-9a9fd8ec848f/wW3OYySdTE.json" background="transparent" speed="1" loop autoplay></dotlottie-player>
 
       </div> : <div>
 
@@ -157,7 +156,7 @@ const CartPage = () => {
                       if (user?.shippingAddress?.isEmpty) {
                         nav('/user/shipping');
                       } else {
-                        // nav('/user/checkout');
+                        nav('/user/checkout');
                       }
 
                     }} className=' w-[60%] bg-black my-5 text-white mx-auto py-1 rounded-sm '>Proceed To CheckOut</button>

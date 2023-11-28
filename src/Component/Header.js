@@ -128,6 +128,12 @@ const Header = () => {
                           break;
                         case 'Product List':
                           nav('/admin/productList');
+                          break;
+                        case 'Cart':
+                          nav('/user/cart');
+                          break;
+                        case 'My Profile':
+                          nav('/user/profile');
 
 
                       }
