@@ -134,6 +134,9 @@ const Header = () => {
                           break;
                         case 'My Profile':
                           nav('/user/profile');
+                          break;
+                        case 'Admin Profile':
+                          nav('/user/profile');
 
 
                       }

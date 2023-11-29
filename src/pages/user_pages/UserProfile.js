@@ -6,8 +6,9 @@ import {
 import { useNavigate } from "react-router";
 
 import { useSelector } from "react-redux";
-import { useGetOrderByUserQuery } from "../../features/orderApi";
+import { useGetOrderByUserQuery, useGetOrdersQuery } from "../../features/orderApi";
 import UpdateForm from "./UpdateForm";
+
 
 
 
@@ -21,8 +22,8 @@ const UserProfile = () => {
 
   const { isLoading, isError, data: orders } = useGetOrderByUserQuery(user.token);
 
-
-
+  const { isLoading: load, data } = useGetOrdersQuery(user.token);
+  console.log(data);
   if (isLoading) {
     return <h1>Loading....</h1>
   }
@@ -54,7 +55,7 @@ const UserProfile = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map(({ _id, totalPrice, createdAt }, index) => {
+              {(user.isAdmin === true ? data : orders)?.map(({ _id, totalPrice, createdAt }, index) => {
                 const isLast = index === orders.length - 1;
                 const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
 

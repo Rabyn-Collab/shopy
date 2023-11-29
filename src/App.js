@@ -17,6 +17,8 @@ import LogRoutes from './Component/LogRoutes';
 import Shipping from './pages/auth_pages/Shipping';
 import OrderPage from './pages/user_pages/OrderPage';
 import UserProfile from './pages/user_pages/UserProfile';
+import OrderDetail from './pages/user_pages/OrderDetail';
+import BothRoutes from './Component/BothRoutes';
 
 const App = () => {
 
@@ -30,6 +32,7 @@ const App = () => {
             <Route path='admin/productList' element={<ProductList />} />
             <Route path='admin/productAdd' element={<AddProduct />} />
             <Route path='admin/productEdit/:id' element={<EditPage />} />
+
           </Route>
           <Route path='product/:id' element={<ProductDetail />} />
 
@@ -45,10 +48,14 @@ const App = () => {
             <Route path='user/cart' element={<CartPage />} />
             <Route path='user/shipping' element={<Shipping />} />
             <Route path='user/checkout' element={<OrderPage />} />
-            <Route path='user/profile' element={<UserProfile />} />
+
+
           </Route>
 
-
+          <Route element={<BothRoutes />}>
+            <Route path='user/profile' element={<UserProfile />} />
+            <Route path='user/order/:id' element={<OrderDetail />} />
+          </Route>
         </Route>
 
       </Routes>
