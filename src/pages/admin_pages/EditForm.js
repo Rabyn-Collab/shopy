@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { Select, Option } from "@material-tailwind/react";
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
-import { baseUrl } from '../../features/constant';
+import { baseUrl, imageBase } from '../../features/constant';
 import { useUpdateProductMutation } from '../../features/productApi';
 
 
@@ -43,7 +43,7 @@ const EditForm = ({ product }) => {
       brand: product.brand,
       category: product.category,
       countInStock: product.countInStock,
-      preview: `${baseUrl}${product.product_image}`,
+      preview: `${imageBase}${product.product_image}`,
     },
     onSubmit: async (val) => {
       let formData = new FormData();

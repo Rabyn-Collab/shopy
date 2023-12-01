@@ -18,7 +18,7 @@ import { useNavigate } from "react-router";
 import { products } from "../../dummy/products";
 import { useState } from "react";
 import { useGetProductsQuery, useRemoveProductByIdMutation } from "../../features/productApi";
-import { baseUrl } from "../../features/constant";
+import { baseUrl, imageBase } from "../../features/constant";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
@@ -105,7 +105,7 @@ const ProductList = () => {
                 return <tr key={_id} >
                   <td className={classes}>
                     <div className="flex items-center gap-3">
-                      <Avatar src={`${baseUrl}${product_image}`} size="sm" />
+                      <Avatar src={`${imageBase}${product_image}`} size="sm" />
                       <div className="flex flex-col">
                         <Typography variant="small" color="blue-gray" className="font-normal">
                           {product_name}

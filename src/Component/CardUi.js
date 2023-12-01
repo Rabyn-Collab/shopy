@@ -9,7 +9,7 @@ import {
 } from "@material-tailwind/react";
 import { useNavigate } from "react-router";
 import { Image, Shimmer } from 'react-shimmer'
-import { baseUrl } from "../features/constant";
+import { baseUrl, imageBase } from "../features/constant";
 
 
 const CardUi = ({ product }) => {
@@ -21,7 +21,7 @@ const CardUi = ({ product }) => {
   return (
     <Card className="mt-6 w-full cursor-pointer hover:shadow-2xl" onClick={() => nav(`/product/${product._id}`)}>
       <CardHeader color="blue-gray" className="relative h-56 ">
-        <img src={`${baseUrl}${product.product_image}`} alt="" className="h-full" />
+        <img src={`${imageBase}${product.product_image}`} alt="" className="h-full" />
         {/* <div className="h-full">
           <Image
             className='h-full'
@@ -42,7 +42,7 @@ const CardUi = ({ product }) => {
         </Typography>
         {product.numReviews > 0 && <div>
           <div className="flex justify-between">
-            <Rating value={product.rating} readonly />
+            <Rating value={Math.floor(product.rating)} readonly />
             <h1> Reviews {product.numReviews}</h1>
           </div>
 

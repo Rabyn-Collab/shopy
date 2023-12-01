@@ -1,13 +1,14 @@
 import { useNavigate, useParams } from "react-router";
 
 import { Image, Shimmer } from 'react-shimmer';
-import { baseUrl } from "../features/constant";
+import { baseUrl, imageBase } from "../features/constant";
 import { Card, Typography, Rating } from "@material-tailwind/react";
 import { useFormik } from "formik";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useGetProductByIdQuery } from "../features/productApi";
 import { addToCart } from "../features/userSlice";
+import Review from "../Component/Review";
 
 
 
@@ -48,7 +49,7 @@ const ProductDetail = () => {
 
         <div>
           <Image
-            src={`${baseUrl}${product.product_image}`}
+            src={`${imageBase}${product.product_image}`}
             fallback={<Shimmer width={800} height={600} className="w-full h-full" />}
           />
         </div>
@@ -64,7 +65,7 @@ const ProductDetail = () => {
           </h1> : <div>
 
             <div className="flex justify-between">
-              <Rating value={product.rating} readonly />
+              <Rating value={Math.floor(product.rating)} readonly />
               <h1> Reviews {product.numReviews}</h1>
             </div>
 
@@ -183,7 +184,7 @@ const ProductDetail = () => {
 
 
 
-
+      <Review product={product} />
 
 
     </div>

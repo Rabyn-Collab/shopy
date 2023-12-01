@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { baseUrl } from "../../features/constant";
+import { baseUrl, imageBase } from "../../features/constant";
 
 import { useSelector } from "react-redux";
 import { useGetOrderByIdQuery } from "../../features/orderApi";
@@ -30,7 +30,7 @@ const OrderDetail = () => {
         <div className=" col-span-2">
           {data && data.orderItems.map((order) => {
             return <div key={order._id} className="grid grid-cols-2 gap-5 mb-5">
-              <img className="h-[150px]" src={`${baseUrl}${order.image}`} alt="" />
+              <img className="h-[150px]" src={`${imageBase}${order.image}`} alt="" />
 
 
               <div className="flex flex-col justify-between">
