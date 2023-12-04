@@ -2,5 +2,5 @@
 
 
 
-export const baseUrl = 'http://192.168.0.102:5000';
-export const imageBase = 'http://192.168.0.102:5000/api';
+export const baseUrl = 'https://shop-site-vdx5.onrender.com:5000';
+export const imageBase = 'https://shop-site-vdx5.onrender.com/api';

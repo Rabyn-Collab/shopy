@@ -17,19 +17,13 @@ const Review = ({ product }) => {
 
 
 
-
-
   const nav = useNavigate();
-
-
 
 
 
   return (
     <div className="p-5 ">
       <AddReview product={product} />
-
-
 
 
 

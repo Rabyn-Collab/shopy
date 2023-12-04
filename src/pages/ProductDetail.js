@@ -184,7 +184,7 @@ const ProductDetail = () => {
 
 
 
-      <Review product={product} />
+      {user && !user?.isAdmin && <Review product={product} />}
 
 
     </div>

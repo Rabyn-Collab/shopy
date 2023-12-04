@@ -46,6 +46,20 @@ export const productApi = createApi({
       invalidatesTags: ['Products']
     }),
 
+
+    addReview: builder.mutation({
+      query: (query) => ({
+        url: `/api/product/${query.id}`,
+        body: query.body,
+        headers: {
+          Authorization: query.token
+        },
+        method: 'PATCH'
+      }),
+
+      invalidatesTags: ['Products']
+    }),
+
     removeProductById: builder.mutation({
       query: (query) => ({
         url: `/api/product/${query.id}`,
@@ -63,4 +77,4 @@ export const productApi = createApi({
 });
 
 
-export const { useGetProductsQuery, useAddProductMutation, useGetProductByIdQuery, useUpdateProductMutation, useRemoveProductByIdMutation } = productApi;
+export const { useGetProductsQuery, useAddProductMutation, useGetProductByIdQuery, useUpdateProductMutation, useRemoveProductByIdMutation, useAddReviewMutation } = productApi;
