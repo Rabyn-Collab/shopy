@@ -3,6 +3,7 @@ import { authApi } from "./authApi";
 import userReducer from '../features/userSlice';
 import { productApi } from "./productApi";
 import { orderApi } from "./orderApi";
+import { newsApi } from "./newsApi";
 
 
 export const store = configureStore({
@@ -11,12 +12,14 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
+    [newsApi.reducerPath]: newsApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
       authApi.middleware,
       productApi.middleware,
-      orderApi.middleware
+      orderApi.middleware,
+      newsApi.middleware
     ]),
 })
 
