@@ -7,7 +7,7 @@ import { useGetCryptoNewsQuery, useGetSearchNewsQuery } from '../features/newsAp
 const HomePage = () => {
 
   const { isLoading: load, isError: err, data: dat, error: errMsg } = useGetSearchNewsQuery({
-    lang: 'fr',
+    lang: 'en',
     search: 'hollywood'
   });
   const { isLoading, isError, data, error } = useGetProductsQuery();
